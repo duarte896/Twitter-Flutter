@@ -46,7 +46,7 @@ class LoginEmailState extends State<LoginEmail> {
               Spacer(),
               ElevatedButton(
                 onPressed: () {
-                  print('Button tapped!');
+                  Navigator.pushNamed(context, '/secondLogin');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,

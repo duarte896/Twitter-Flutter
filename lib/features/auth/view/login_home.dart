@@ -88,7 +88,16 @@ class LoginHomeState extends State<LoginHome> {
               Text(
                 'Have an account already?',
               ),
-              Text(' Log in', style: TextStyle(color: Colors.blue))
+              TextButton(
+                style: ButtonStyle(
+                  foregroundColor:
+                      MaterialStateProperty.all<Color>(Colors.blue),
+                ),
+                onPressed: () {
+                  Navigator.pushNamed(context, '/firstLogin');
+                },
+                child: Text('Log in'),
+              ),
             ],
           )),
     );

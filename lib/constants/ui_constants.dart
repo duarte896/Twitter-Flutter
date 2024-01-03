@@ -5,54 +5,51 @@ import 'package:twitter/constants/assets_constants.dart';
 class UIConstants {
   static AppBar registerNav() {
     return AppBar(
-      title: Row(
+      title: Column(
         children: [
-          //Icon(Icons.arrow_back),
-          Spacer(),
           SvgPicture.asset(
             AssetsConstants.twitterLogo,
             // ignore: deprecated_member_use
             color: Colors.blue,
             height: 30,
           ),
-          Spacer(),
         ],
       ),
+      centerTitle: true,
     );
   }
 
   static AppBar loginNav() {
     return AppBar(
-      title: Row(
+      title: Column(
         children: [
-          Icon(Icons.clear),
-          Spacer(flex: 1),
+          //Icon(Icons.clear),
+
           SvgPicture.asset(
             AssetsConstants.twitterLogo,
             // ignore: deprecated_member_use
             color: Colors.blue,
             height: 30,
           ),
-          Spacer(flex: 1),
         ],
       ),
+      centerTitle: true,
     );
   }
 
   static AppBar loginHomeNav() {
     return AppBar(
-      title: Row(
+      title: Column(
         children: [
-          Spacer(),
           SvgPicture.asset(
             AssetsConstants.twitterLogo,
             // ignore: deprecated_member_use
             color: Colors.blue,
             height: 30,
           ),
-          Spacer()
         ],
       ),
+      centerTitle: true,
     );
   }
 }
