@@ -7,15 +7,15 @@ class UIConstants {
     return AppBar(
       title: Row(
         children: [
-          Icon(Icons.arrow_back),
-          Spacer(flex: 1),
+          //Icon(Icons.arrow_back),
+          Spacer(),
           SvgPicture.asset(
             AssetsConstants.twitterLogo,
             // ignore: deprecated_member_use
             color: Colors.blue,
             height: 30,
           ),
-          Spacer(flex: 1),
+          Spacer(),
         ],
       ),
     );
@@ -34,6 +34,23 @@ class UIConstants {
             height: 30,
           ),
           Spacer(flex: 1),
+        ],
+      ),
+    );
+  }
+
+  static AppBar loginHomeNav() {
+    return AppBar(
+      title: Row(
+        children: [
+          Spacer(),
+          SvgPicture.asset(
+            AssetsConstants.twitterLogo,
+            // ignore: deprecated_member_use
+            color: Colors.blue,
+            height: 30,
+          ),
+          Spacer()
         ],
       ),
     );
