@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:twitter/constants/assets_constants.dart';
 import 'package:twitter/constants/ui_constants.dart';
+import 'package:twitter/features/view/tweet.dart';
 import 'package:twitter/theme/app_theme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:twitter/features/auth/auth.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,13 +17,84 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   int _selectedIndex = 0;
 
+  final User? user = Auth().currentUser;
+
+  Future<void> signOut() async {
+    await Auth().signOut();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Theme(
       data: AppTheme.secondTheme,
       child: Scaffold(
         appBar: UIConstants.homeNav(),
-        body: Text('hola'),
+        drawer: Drawer(
+          child: ListView(
+            padding: EdgeInsets.zero,
+            children: [
+              const DrawerHeader(
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      backgroundImage:
+                          NetworkImage('http://placehold.it/150x150?text=A'),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [Text('User'), Text('@user')],
+                    )
+                  ],
+                ),
+              ),
+              ListTile(
+                title: const Text('Profile'),
+                selected: _selectedIndex == 0,
+                onTap: () {},
+              ),
+              ListTile(
+                title: const Text('List'),
+                selected: _selectedIndex == 0,
+                onTap: () {},
+              ),
+              ListTile(
+                title: const Text('Moments'),
+                selected: _selectedIndex == 0,
+                onTap: () {},
+              ),
+              Divider(),
+              ListTile(
+                title: const Text('Log Out'),
+                selected: _selectedIndex == 0,
+                onTap: () {
+                  signOut();
+                },
+              ),
+            ],
+          ),
+        ),
+        body: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Row(children: [
+                CircleAvatar(
+                  backgroundImage:
+                      NetworkImage('http://placehold.it/150x150?text=A'),
+                ),
+              ]),
+            ),
+            Divider(
+              color: Colors.grey,
+            ),
+            ChatItem()
+          ],
+        ),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.blue,
+          onPressed: () {},
+          child: Icon(Icons.add),
+        ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[

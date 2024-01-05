@@ -39,6 +39,7 @@ class UIConstants {
 
   static AppBar loginHomeNav() {
     return AppBar(
+      automaticallyImplyLeading: false,
       title: Column(
         children: [
           SvgPicture.asset(
@@ -55,6 +56,7 @@ class UIConstants {
 
   static AppBar homeNav() {
     return AppBar(
+      iconTheme: IconThemeData(color: Colors.blue),
       title: Column(
         children: [
           SvgPicture.asset(
