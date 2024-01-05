@@ -9,4 +9,12 @@ class AppTheme {
       elevation: 0,
     ),
   );
+
+  static ThemeData secondTheme = ThemeData.dark().copyWith(
+    scaffoldBackgroundColor: Pallete.secondBackgroundColor,
+    appBarTheme: const AppBarTheme(
+      backgroundColor: Pallete.secondBackgroundColor,
+      elevation: 0,
+    ),
+  );
 }

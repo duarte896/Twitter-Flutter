@@ -45,7 +45,7 @@ class LoginPasswordState extends State<LoginPassword> {
               Spacer(),
               ElevatedButton(
                 onPressed: () {
-                  print('Button tapped!');
+                  Navigator.pushNamed(context, '/home');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,

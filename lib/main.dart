@@ -1,5 +1,5 @@
-//import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:twitter/features/auth/view/home.dart';
 import 'package:twitter/features/auth/view/login_email.dart';
 import 'package:twitter/features/auth/view/login_home.dart';
 import 'package:twitter/features/auth/view/login_password.dart';
@@ -23,12 +23,9 @@ class MyApp extends StatelessWidget {
         "/": (context) => const LoginHome(),
         "/firstLogin": (context) => const LoginEmail(),
         "/secondLogin": (context) => const LoginPassword(),
-        "/register": (context) => const Register()
+        "/register": (context) => const Register(),
+        "/home": (context) => const Home()
       },
-      //home: LoginHome(),
-      //home: LoginEmail(),
-      //home: LoginPassword(),
-      //home: Register(),
     );
   }
 }

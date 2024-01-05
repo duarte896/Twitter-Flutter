@@ -52,4 +52,20 @@ class UIConstants {
       centerTitle: true,
     );
   }
+
+  static AppBar homeNav() {
+    return AppBar(
+      title: Column(
+        children: [
+          SvgPicture.asset(
+            AssetsConstants.twitterLogo,
+            // ignore: deprecated_member_use
+            color: Colors.blue,
+            height: 30,
+          ),
+        ],
+      ),
+      centerTitle: true,
+    );
+  }
 }
