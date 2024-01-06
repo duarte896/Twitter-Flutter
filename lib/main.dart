@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/features/view/create_tweet.dart';
 import 'package:twitter/features/view/home.dart';
 import 'package:twitter/features/view/login_email.dart';
 import 'package:twitter/features/view/login_home.dart';
@@ -26,9 +27,11 @@ class MyApp extends StatelessWidget {
       routes: {
         "/": (context) => const LoginHome(),
         "/firstLogin": (context) => const LoginEmail(),
-        "/secondLogin": (context) => const LoginPassword(),
+        "/secondLogin": (context) => const LoginPassword(
+              data: '',
+            ),
         "/register": (context) => const Register(),
-        "/home": (context) => const Home()
+        "/home": (context) => const Home(),
       },
       //home: const WidgetTree(),
     );

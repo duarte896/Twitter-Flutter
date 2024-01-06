@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ChatItem extends StatelessWidget {
+class ChatItem extends StatefulWidget {
+  const ChatItem({super.key});
+
+  @override
+  State<ChatItem> createState() => ChatItemState();
+}
+
+class ChatItemState extends State<ChatItem> {
   @override
   Widget build(BuildContext context) {
     const url = 'http://placehold.it/150x150?text=A';

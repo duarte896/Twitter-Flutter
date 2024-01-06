@@ -1,7 +1,12 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:twitter/components/drawer.dart';
+import 'package:twitter/components/text_field.dart';
+import 'package:twitter/components/wall_tweet.dart';
 import 'package:twitter/constants/assets_constants.dart';
 import 'package:twitter/constants/ui_constants.dart';
+import 'package:twitter/features/view/create_tweet.dart';
 import 'package:twitter/features/view/tweet.dart';
 import 'package:twitter/theme/app_theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,16 +22,16 @@ class Home extends StatefulWidget {
 class HomeState extends State<Home> {
   int _selectedIndex = 0;
 
-  final User? user = Auth().currentUser;
+  final currentUser = FirebaseAuth.instance.currentUser!;
 
-  Future<void> signOut() async {
-    try {
-      await Auth().signOut();
-      // ignore: use_build_context_synchronously
-      Navigator.pushReplacementNamed(context, '/');
-    } on FirebaseAuthException catch (error) {
-      setState(() {
-        print(error.message);
+  final textController = TextEditingController();
+
+  void postMessage() {
+    if (textController.text.isNotEmpty) {
+      FirebaseFirestore.instance.collection('User Tweets').add({
+        'UserEmail': currentUser.email,
+        'Message': textController.text,
+        'TimeStamp': Timestamp.now(),
       });
     }
   }
@@ -36,71 +41,90 @@ class HomeState extends State<Home> {
     return Theme(
       data: AppTheme.secondTheme,
       child: Scaffold(
-        appBar: UIConstants.homeNav(),
-        drawer: Drawer(
-          child: ListView(
-            padding: EdgeInsets.zero,
-            children: [
-              const DrawerHeader(
+          appBar: UIConstants.homeNav(),
+          drawer: MyDrawer(
+            context: context,
+          ),
+          body: Center(
+            child: Column(children: [
+              // the wall
+              Expanded(
+                  child: StreamBuilder(
+                stream: FirebaseFirestore.instance
+                    .collection('User Tweets')
+                    .orderBy('TimeStamp', descending: false)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return ListView.builder(
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (context, index) {
+                        final post = snapshot.data!.docs[index];
+                        return WallTweet(
+                            message: post['Message'], user: post['UserEmail']);
+                      },
+                    );
+                  } else if (snapshot.hasError) {
+                    return Center(
+                      child: Text('Error:${snapshot.error}'),
+                    );
+                  }
+                  return const Center(child: CircularProgressIndicator());
+                },
+              )),
+
+              //post message
+              Padding(
+                padding: const EdgeInsets.all(25),
                 child: Row(
                   children: [
-                    CircleAvatar(
-                      backgroundImage:
-                          NetworkImage('http://placehold.it/150x150?text=A'),
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [Text('User'), Text('@user')],
-                    )
+                    Expanded(
+                        child: MyTextField(
+                            controller: textController,
+                            hintText: "What's happening?",
+                            obscureText: false)),
+                    IconButton(
+                        onPressed: postMessage,
+                        icon: const Icon(Icons.arrow_circle_up))
                   ],
                 ),
-              ),
-              ListTile(
-                title: const Text('Profile'),
-                selected: _selectedIndex == 0,
-                onTap: () {},
-              ),
-              ListTile(
-                title: const Text('List'),
-                selected: _selectedIndex == 0,
-                onTap: () {},
-              ),
-              ListTile(
-                title: const Text('Moments'),
-                selected: _selectedIndex == 0,
-                onTap: () {},
-              ),
-              Divider(),
-              ListTile(
-                title: const Text('Log Out'),
-                selected: _selectedIndex == 0,
-                onTap: () {
-                  signOut();
-                },
-              ),
-            ],
-          ),
-        ),
-        body: Column(
-          children: [
-            Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Row(children: [
-                CircleAvatar(
-                  backgroundImage:
-                      NetworkImage('http://placehold.it/150x150?text=A'),
-                ),
-              ]),
-            ),
-            Divider(
-              color: Colors.grey,
-            ),
-            ChatItem()
-          ],
+              )
+            ]),
+          )
+          /*body: Center(
+          child: Column(children: [
+            Expanded(
+                child: StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection("User Tweets")
+                  .orderBy("TimeStamp", descending: false)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      final post = snapshot.data!.docs[index];
+                      return WallTweet(
+                          message: post["Message"], user: post["UserEmail"]);
+                    },
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text('Error:${snapshot.error}'),
+                  );
+                }
+                return const Center(child: CircularProgressIndicator());
+              },
+            ))
+          ]),
         ),
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.blue,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => CreateTweet()));
+          },
           child: Icon(Icons.add),
         ),
         bottomNavigationBar: BottomNavigationBar(
@@ -151,8 +175,8 @@ class HomeState extends State<Home> {
               _selectedIndex = index;
             });
           },
-        ),
-      ),
+        ),*/
+          ),
     );
   }
 }

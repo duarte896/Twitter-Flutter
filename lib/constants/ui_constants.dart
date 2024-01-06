@@ -70,4 +70,27 @@ class UIConstants {
       centerTitle: true,
     );
   }
+
+  static AppBar tweetNav() {
+    return AppBar(
+      iconTheme: IconThemeData(color: Colors.blue),
+      title: Row(
+        children: [
+          Expanded(child: Container()),
+          ElevatedButton(
+            onPressed: () {},
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.blue,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(30),
+              ),
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            ),
+            child: Text('Tweet'),
+          ),
+        ],
+      ),
+    );
+  }
 }

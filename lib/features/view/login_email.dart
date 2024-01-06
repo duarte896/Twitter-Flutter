@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:twitter/constants/ui_constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:twitter/features/auth/auth.dart';
+import 'package:twitter/features/view/login_password.dart';
 
 class LoginEmail extends StatefulWidget {
   const LoginEmail({super.key});
@@ -12,25 +13,8 @@ class LoginEmail extends StatefulWidget {
 
 class LoginEmailState extends State<LoginEmail> {
   String? errorMessage = '';
-  bool isLogin = true;
 
   final TextEditingController _controllerEmail = TextEditingController();
-  final TextEditingController _controllerPassword = TextEditingController();
-
-  Future<void> signInWithEmailAndPassword() async {
-    try {
-      await Auth().signInWithEmailAndPassword(
-        email: _controllerEmail.text,
-        password: _controllerPassword.text,
-      );
-      // ignore: use_build_context_synchronously
-      Navigator.pushReplacementNamed(context, '/home');
-    } on FirebaseAuthException catch (error) {
-      setState(() {
-        errorMessage = error.message;
-      });
-    }
-  }
 
   Widget _entryField(
     String title,
@@ -51,20 +35,6 @@ class LoginEmailState extends State<LoginEmail> {
     return Text(errorMessage == '' ? '' : '$errorMessage');
   }
 
-  Widget _submitButtom() {
-    return ElevatedButton(
-        onPressed: signInWithEmailAndPassword,
-        style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
-          ),
-          padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-        ),
-        child: Text('Next'));
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -81,7 +51,6 @@ class LoginEmailState extends State<LoginEmail> {
                 ),
               ),
               _entryField('Phone, email or username', _controllerEmail),
-              _entryField('Password', _controllerPassword),
               _errorMessage()
             ],
           )),
@@ -94,7 +63,24 @@ class LoginEmailState extends State<LoginEmail> {
                 style: TextStyle(color: Colors.blue),
               ),
               Spacer(),
-              _submitButtom()
+              ElevatedButton(
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              LoginPassword(data: _controllerEmail.text)));
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                  padding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                ),
+                child: Text('Next'),
+              ),
             ],
           )),
     );
