@@ -5,7 +5,7 @@ import 'package:twitter/features/view/login_home.dart';
 import 'package:twitter/features/view/login_password.dart';
 import 'package:twitter/features/view/register.dart';
 import 'package:twitter/theme/app_theme.dart';
-import 'package:twitter/features/auth/widget_tree.dart';
+//import 'package:twitter/features/auth/widget_tree.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {

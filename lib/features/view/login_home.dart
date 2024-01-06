@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:twitter/constants/assets_constants.dart';
 import 'package:twitter/constants/ui_constants.dart';
-import 'package:twitter/theme/app_theme.dart';
 
 class LoginHome extends StatefulWidget {
   const LoginHome({super.key});

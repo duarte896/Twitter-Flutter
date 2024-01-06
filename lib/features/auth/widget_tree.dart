@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:twitter/features/auth/auth.dart';
 import 'package:twitter/features/view/home.dart';
 import 'package:twitter/features/view/login_home.dart';
