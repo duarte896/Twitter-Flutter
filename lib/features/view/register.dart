@@ -13,7 +13,6 @@ class Register extends StatefulWidget {
 
 class RegisterState extends State<Register> {
   String? errorMessage = '';
-  bool isLogin = true;
 
   final TextEditingController _controllerName = TextEditingController();
   final TextEditingController _controllerEmail = TextEditingController();
@@ -25,6 +24,8 @@ class RegisterState extends State<Register> {
         email: _controllerEmail.text,
         password: _controllerPassword.text,
       );
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacementNamed(context, '/home');
     } on FirebaseAuthException catch (error) {
       setState(() {
         errorMessage = error.message;

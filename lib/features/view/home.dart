@@ -20,7 +20,15 @@ class HomeState extends State<Home> {
   final User? user = Auth().currentUser;
 
   Future<void> signOut() async {
-    await Auth().signOut();
+    try {
+      await Auth().signOut();
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacementNamed(context, '/');
+    } on FirebaseAuthException catch (error) {
+      setState(() {
+        print(error.message);
+      });
+    }
   }
 
   @override

@@ -24,6 +24,8 @@ class LoginEmailState extends State<LoginEmail> {
         email: _controllerEmail.text,
         password: _controllerPassword.text,
       );
+      // ignore: use_build_context_synchronously
+      Navigator.pushReplacementNamed(context, '/home');
     } on FirebaseAuthException catch (error) {
       setState(() {
         errorMessage = error.message;

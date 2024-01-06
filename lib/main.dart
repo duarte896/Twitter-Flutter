@@ -22,15 +22,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Twitter',
       theme: AppTheme.theme,
-      //initialRoute: '/',
+      initialRoute: '/',
       routes: {
-        "/homeLogin": (context) => const LoginHome(),
+        "/": (context) => const LoginHome(),
         "/firstLogin": (context) => const LoginEmail(),
         "/secondLogin": (context) => const LoginPassword(),
         "/register": (context) => const Register(),
         "/home": (context) => const Home()
       },
-      home: const WidgetTree(),
+      //home: const WidgetTree(),
     );
   }
 }
