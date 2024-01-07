@@ -6,7 +6,7 @@ import 'package:twitter/features/view/login_home.dart';
 import 'package:twitter/features/view/login_password.dart';
 import 'package:twitter/features/view/register.dart';
 import 'package:twitter/theme/app_theme.dart';
-//import 'package:twitter/features/auth/widget_tree.dart';
+import 'package:twitter/features/auth/widget_tree.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 Future<void> main() async {
@@ -23,9 +23,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Twitter',
       theme: AppTheme.theme,
-      initialRoute: '/',
+      //initialRoute: '/',
       routes: {
-        "/": (context) => const LoginHome(),
+        "/loginHome": (context) => const LoginHome(),
         "/firstLogin": (context) => const LoginEmail(),
         "/secondLogin": (context) => const LoginPassword(
               data: '',
@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         "/register": (context) => const Register(),
         "/home": (context) => const Home(),
       },
-      //home: const WidgetTree(),
+      home: const WidgetTree(),
     );
   }
 }

@@ -12,7 +12,7 @@ class MyDrawer extends StatelessWidget {
     try {
       await Auth().signOut();
       // ignore: use_build_context_synchronously
-      Navigator.pushReplacementNamed(context, '/');
+      Navigator.pushReplacementNamed(context, '/loginHome');
     } on FirebaseAuthException catch (error) {
       print(error.message);
     }

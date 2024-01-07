@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:twitter/constants/assets_constants.dart';
 
 class WallTweet extends StatelessWidget {
   final String message;
@@ -9,47 +11,60 @@ class WallTweet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
-      child: Row(children: [
-        CircleAvatar(
-          backgroundImage: NetworkImage(url),
-        ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(left: 16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
+    return Column(children: [
+      Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Row(
+          children: [
+            CircleAvatar(
+              backgroundImage: NetworkImage(url),
+            ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                    Row(
                       children: [
-                        Text(
-                          user,
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            fontWeight: FontWeight.w500,
-                            color: Colors.black,
-                          ),
-                        ),
-                        Text(
-                          message,
-                          style: TextStyle(
-                            fontSize: 16.0,
-                            color: Colors.black,
-                          ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              user,
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Text(
+                              message,
+                              style: TextStyle(
+                                fontSize: 16.0,
+                                color: Colors.black,
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                SvgPicture.asset(
+                                  AssetsConstants.commentLogo,
+                                  height: 20,
+                                ),
+                              ],
+                            )
+                          ],
                         )
                       ],
                     )
                   ],
-                )
-              ],
+                ),
+              ),
             ),
-          ),
-        )
-      ]),
-    );
+          ],
+        ),
+      ),
+      Divider(color: Colors.grey)
+    ]);
   }
 }

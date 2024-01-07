@@ -33,21 +33,6 @@ class RegisterState extends State<Register> {
     }
   }
 
-  Widget _entryField(
-    String title,
-    TextEditingController controller,
-  ) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        hintText: title,
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.blue),
-        ),
-      ),
-    );
-  }
-
   Widget _errorMessage() {
     return Text(errorMessage == '' ? '' : '$errorMessage');
   }

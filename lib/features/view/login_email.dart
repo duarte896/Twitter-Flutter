@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:twitter/components/text_field_auth.dart';
 import 'package:twitter/constants/ui_constants.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:twitter/features/auth/auth.dart';
 import 'package:twitter/features/view/login_password.dart';
 
 class LoginEmail extends StatefulWidget {

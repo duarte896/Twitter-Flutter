@@ -6,4 +6,5 @@ class AssetsConstants {
   static const String searchLogo = '$_svgsPath/search.svg';
   static const String notificationLogo = '$_svgsPath/notification.svg';
   static const String inboxLogo = '$_svgsPath/inbox.svg';
+  static const String commentLogo = '$_svgsPath/comment.svg';
 }

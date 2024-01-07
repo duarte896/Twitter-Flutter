@@ -61,6 +61,7 @@ class LoginPasswordState extends State<LoginPassword> {
       body: Container(
           padding: EdgeInsets.all(20.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Enter your password',
