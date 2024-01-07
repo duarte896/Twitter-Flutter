@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-//import 'package:twitter/features/view/create_tweet.dart';
 import 'package:twitter/features/view/home.dart';
 import 'package:twitter/features/view/login_email.dart';
 import 'package:twitter/features/view/login_home.dart';
@@ -23,7 +22,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Twitter',
       theme: AppTheme.theme,
-      //initialRoute: '/',
       routes: {
         "/loginHome": (context) => const LoginHome(),
         "/firstLogin": (context) => const LoginEmail(),

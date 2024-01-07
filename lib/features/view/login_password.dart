@@ -5,9 +5,8 @@ import 'package:twitter/constants/ui_constants.dart';
 import 'package:twitter/features/auth/auth.dart';
 
 class LoginPassword extends StatefulWidget {
-  const LoginPassword({super.key, required this.data});
-
   final String data;
+  const LoginPassword({super.key, required this.data});
 
   @override
   State<LoginPassword> createState() => LoginPasswordState();
