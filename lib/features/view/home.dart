@@ -6,11 +6,8 @@ import 'package:twitter/components/text_field.dart';
 import 'package:twitter/components/wall_tweet.dart';
 import 'package:twitter/constants/assets_constants.dart';
 import 'package:twitter/constants/ui_constants.dart';
-import 'package:twitter/features/view/create_tweet.dart';
-
 import 'package:twitter/theme/app_theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:twitter/features/auth/auth.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
