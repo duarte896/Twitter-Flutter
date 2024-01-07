@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/components/text_field_auth.dart';
 import 'package:twitter/constants/ui_constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:twitter/features/auth/auth.dart';
@@ -13,15 +14,15 @@ class Register extends StatefulWidget {
 class RegisterState extends State<Register> {
   String? errorMessage = '';
 
-  final TextEditingController _controllerName = TextEditingController();
-  final TextEditingController _controllerEmail = TextEditingController();
-  final TextEditingController _controllerPassword = TextEditingController();
+  final TextEditingController controllerName = TextEditingController();
+  final TextEditingController controllerEmail = TextEditingController();
+  final TextEditingController controllerPassword = TextEditingController();
 
   Future<void> createUserWithEmailAndPassword() async {
     try {
       await Auth().createUserWithEmailAndPassword(
-        email: _controllerEmail.text,
-        password: _controllerPassword.text,
+        email: controllerEmail.text,
+        password: controllerPassword.text,
       );
       // ignore: use_build_context_synchronously
       Navigator.pushReplacementNamed(context, '/home');
@@ -87,15 +88,24 @@ class RegisterState extends State<Register> {
                       children: [
                         Padding(
                             padding: EdgeInsets.symmetric(vertical: 10),
-                            child: _entryField('Name', _controllerName)),
+                            child: AuthTextField(
+                                controller: controllerName,
+                                title: 'Name',
+                                obscureText: false)),
                         Padding(
                             padding: EdgeInsets.symmetric(vertical: 10),
-                            child: _entryField('Phone number or email address',
-                                _controllerEmail)),
+                            child: AuthTextField(
+                              controller: controllerEmail,
+                              title: 'Email address',
+                              obscureText: false,
+                            )),
                         Padding(
                             padding: EdgeInsets.symmetric(vertical: 10),
-                            child:
-                                _entryField('password', _controllerPassword)),
+                            child: AuthTextField(
+                              controller: controllerPassword,
+                              title: 'Password',
+                              obscureText: true,
+                            )),
                         _errorMessage()
                       ]),
                 ))

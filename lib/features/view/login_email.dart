@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:twitter/components/text_field_auth.dart';
 import 'package:twitter/constants/ui_constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:twitter/features/auth/auth.dart';
@@ -14,22 +15,7 @@ class LoginEmail extends StatefulWidget {
 class LoginEmailState extends State<LoginEmail> {
   String? errorMessage = '';
 
-  final TextEditingController _controllerEmail = TextEditingController();
-
-  Widget _entryField(
-    String title,
-    TextEditingController controller,
-  ) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        hintText: title,
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.blue),
-        ),
-      ),
-    );
-  }
+  final TextEditingController controllerEmail = TextEditingController();
 
   Widget _errorMessage() {
     return Text(errorMessage == '' ? '' : '$errorMessage');
@@ -50,7 +36,11 @@ class LoginEmailState extends State<LoginEmail> {
                   fontSize: 25,
                 ),
               ),
-              _entryField('Phone, email or username', _controllerEmail),
+              AuthTextField(
+                controller: controllerEmail,
+                title: 'Phone, email or username',
+                obscureText: false,
+              ),
               _errorMessage()
             ],
           )),
@@ -69,7 +59,7 @@ class LoginEmailState extends State<LoginEmail> {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
-                              LoginPassword(data: _controllerEmail.text)));
+                              LoginPassword(data: controllerEmail.text)));
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,

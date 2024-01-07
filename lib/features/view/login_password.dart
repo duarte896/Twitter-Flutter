@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:twitter/components/text_field_auth.dart';
 import 'package:twitter/constants/ui_constants.dart';
 import 'package:twitter/features/auth/auth.dart';
 
@@ -16,13 +17,13 @@ class LoginPasswordState extends State<LoginPassword> {
   String? errorMessage = '';
   bool isLogin = true;
 
-  final TextEditingController _controllerPassword = TextEditingController();
+  final TextEditingController controllerPassword = TextEditingController();
 
   Future<void> signInWithEmailAndPassword() async {
     try {
       await Auth().signInWithEmailAndPassword(
         email: widget.data,
-        password: _controllerPassword.text,
+        password: controllerPassword.text,
       );
       if (mounted) {
         // ignore: use_build_context_synchronously
@@ -33,21 +34,6 @@ class LoginPasswordState extends State<LoginPassword> {
         errorMessage = error.message;
       });
     }
-  }
-
-  Widget _entryField(
-    String title,
-    TextEditingController controller,
-  ) {
-    return TextField(
-      controller: controller,
-      decoration: InputDecoration(
-        hintText: title,
-        focusedBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: Colors.blue),
-        ),
-      ),
-    );
   }
 
   Widget _errorMessage() {
@@ -83,7 +69,11 @@ class LoginPasswordState extends State<LoginPassword> {
                   fontSize: 25,
                 ),
               ),
-              _entryField('Password', _controllerPassword),
+              AuthTextField(
+                controller: controllerPassword,
+                title: 'Password',
+                obscureText: true,
+              ),
               _errorMessage()
             ],
           )),

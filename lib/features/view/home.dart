@@ -7,7 +7,7 @@ import 'package:twitter/components/wall_tweet.dart';
 import 'package:twitter/constants/assets_constants.dart';
 import 'package:twitter/constants/ui_constants.dart';
 import 'package:twitter/features/view/create_tweet.dart';
-import 'package:twitter/features/view/tweet.dart';
+
 import 'package:twitter/theme/app_theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:twitter/features/auth/auth.dart';
@@ -34,6 +34,7 @@ class HomeState extends State<Home> {
         'TimeStamp': Timestamp.now(),
       });
     }
+    textController.clear();
   }
 
   @override
@@ -41,57 +42,57 @@ class HomeState extends State<Home> {
     return Theme(
       data: AppTheme.secondTheme,
       child: Scaffold(
-          appBar: UIConstants.homeNav(),
-          drawer: MyDrawer(
-            context: context,
-          ),
-          body: Center(
-            child: Column(children: [
-              // the wall
-              Expanded(
-                  child: StreamBuilder(
-                stream: FirebaseFirestore.instance
-                    .collection('User Tweets')
-                    .orderBy('TimeStamp', descending: false)
-                    .snapshots(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    return ListView.builder(
-                      itemCount: snapshot.data!.docs.length,
-                      itemBuilder: (context, index) {
-                        final post = snapshot.data!.docs[index];
-                        return WallTweet(
-                            message: post['Message'], user: post['UserEmail']);
-                      },
-                    );
-                  } else if (snapshot.hasError) {
-                    return Center(
-                      child: Text('Error:${snapshot.error}'),
-                    );
-                  }
-                  return const Center(child: CircularProgressIndicator());
-                },
-              )),
+        appBar: UIConstants.homeNav(),
+        drawer: MyDrawer(
+          context: context,
+        ),
+        body: Center(
+          child: Column(children: [
+            // the wall
+            Expanded(
+                child: StreamBuilder(
+              stream: FirebaseFirestore.instance
+                  .collection('User Tweets')
+                  .orderBy('TimeStamp', descending: true)
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return ListView.builder(
+                    itemCount: snapshot.data!.docs.length,
+                    itemBuilder: (context, index) {
+                      final post = snapshot.data!.docs[index];
+                      return WallTweet(
+                          message: post['Message'], user: post['UserEmail']);
+                    },
+                  );
+                } else if (snapshot.hasError) {
+                  return Center(
+                    child: Text('Error:${snapshot.error}'),
+                  );
+                }
+                return const Center(child: CircularProgressIndicator());
+              },
+            )),
 
-              //post message
-              Padding(
-                padding: const EdgeInsets.all(25),
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: MyTextField(
-                            controller: textController,
-                            hintText: "What's happening?",
-                            obscureText: false)),
-                    IconButton(
-                        onPressed: postMessage,
-                        icon: const Icon(Icons.arrow_circle_up))
-                  ],
-                ),
-              )
-            ]),
-          )
-          /*body: Center(
+            //post message
+            Padding(
+              padding: const EdgeInsets.all(25),
+              child: Row(
+                children: [
+                  Expanded(
+                      child: MyTextField(
+                    controller: textController,
+                    hintText: "What's happening?",
+                  )),
+                  IconButton(
+                      onPressed: postMessage,
+                      icon: const Icon(Icons.arrow_circle_up))
+                ],
+              ),
+            )
+          ]),
+        ),
+        /*body: Center(
           child: Column(children: [
             Expanded(
                 child: StreamBuilder(
@@ -126,7 +127,7 @@ class HomeState extends State<Home> {
                 MaterialPageRoute(builder: (context) => CreateTweet()));
           },
           child: Icon(Icons.add),
-        ),
+        ),*/
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
           items: <BottomNavigationBarItem>[
@@ -175,8 +176,8 @@ class HomeState extends State<Home> {
               _selectedIndex = index;
             });
           },
-        ),*/
-          ),
+        ),
+      ),
     );
   }
 }
