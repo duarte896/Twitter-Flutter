@@ -22,7 +22,7 @@ class LoginEmailState extends State<LoginEmail> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: UIConstants.loginNav(),
+      appBar: UIConstants.appNav(true),
       body: Container(
           padding: EdgeInsets.all(20.0),
           child: Column(

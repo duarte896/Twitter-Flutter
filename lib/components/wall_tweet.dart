@@ -19,6 +19,7 @@ class WallTweet extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 25.0),
               child: CircleAvatar(
+                radius: 25,
                 backgroundImage: NetworkImage(url),
               ),
             ),
@@ -46,11 +47,14 @@ class WallTweet extends StatelessWidget {
                                         color: Colors.black,
                                       ),
                                     ),
-                                    Text(
-                                      message,
-                                      style: TextStyle(
-                                        fontSize: 16.0,
-                                        color: Colors.black,
+                                    SizedBox(
+                                      width: 300,
+                                      child: Text(
+                                        message,
+                                        style: TextStyle(
+                                          fontSize: 16.0,
+                                          color: Colors.black,
+                                        ),
                                       ),
                                     ),
                                   ],

@@ -15,7 +15,7 @@ class LoginHomeState extends State<LoginHome> {
   Widget build(BuildContext context) {
     var gray = Colors.grey;
     return Scaffold(
-      appBar: UIConstants.loginHomeNav(),
+      appBar: UIConstants.appNav(false),
       body: Container(
           padding: EdgeInsets.all(20.0),
           child: Column(

@@ -11,10 +11,11 @@ class Storys extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(16.0),
       child: Row(
         children: [
           CircleAvatar(
+            radius: 25,
             backgroundImage: NetworkImage(
                 'http://placehold.it/150x150?text=${UIConstants.userID(currentUser.email!)}'),
           ),
@@ -22,6 +23,35 @@ class Storys extends StatelessWidget {
             width: 10,
           ),
           CircleAvatar(
+            radius: 25,
+            backgroundImage: NetworkImage(url),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          CircleAvatar(
+            radius: 25,
+            backgroundImage: NetworkImage(url),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          CircleAvatar(
+            radius: 25,
+            backgroundImage: NetworkImage(url),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          CircleAvatar(
+            radius: 25,
+            backgroundImage: NetworkImage(url),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          CircleAvatar(
+            radius: 25,
             backgroundImage: NetworkImage(url),
           ),
         ],

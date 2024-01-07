@@ -39,7 +39,7 @@ class HomeState extends State<Home> {
     return Theme(
       data: AppTheme.secondTheme,
       child: Scaffold(
-        appBar: UIConstants.homeNav(),
+        appBar: UIConstants.appNav(true),
         drawer: MyDrawer(
           context: context,
         ),

@@ -29,6 +29,7 @@ class MyDrawer extends StatelessWidget {
             child: Row(
               children: [
                 CircleAvatar(
+                  radius: 25,
                   backgroundImage: NetworkImage(
                       'http://placehold.it/150x150?text=${UIConstants.userID(currentUser.email!)}'),
                 ),
