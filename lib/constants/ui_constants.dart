@@ -93,4 +93,12 @@ class UIConstants {
       ),
     );
   }
+
+  static userID(String text) {
+    if (text.isNotEmpty) {
+      return text.substring(0, 1).toUpperCase();
+    } else {
+      return 'A';
+    }
+  }
 }

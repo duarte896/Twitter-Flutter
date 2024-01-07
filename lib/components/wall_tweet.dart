@@ -16,8 +16,11 @@ class WallTweet extends StatelessWidget {
         padding: const EdgeInsets.all(16.0),
         child: Row(
           children: [
-            CircleAvatar(
-              backgroundImage: NetworkImage(url),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 25.0),
+              child: CircleAvatar(
+                backgroundImage: NetworkImage(url),
+              ),
             ),
             Expanded(
               child: Padding(
@@ -30,26 +33,76 @@ class WallTweet extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(
-                              user,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                fontWeight: FontWeight.w500,
-                                color: Colors.black,
-                              ),
-                            ),
-                            Text(
-                              message,
-                              style: TextStyle(
-                                fontSize: 16.0,
-                                color: Colors.black,
-                              ),
+                            Row(
+                              children: [
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      user,
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontWeight: FontWeight.w500,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                    Text(
+                                      message,
+                                      style: TextStyle(
+                                        fontSize: 16.0,
+                                        color: Colors.black,
+                                      ),
+                                    ),
+                                  ],
+                                )
+                              ],
                             ),
                             Row(
                               children: [
-                                SvgPicture.asset(
-                                  AssetsConstants.commentLogo,
-                                  height: 20,
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: SvgPicture.asset(
+                                    AssetsConstants.commentLogo,
+                                    height: 20,
+                                    // ignore: deprecated_member_use
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 60,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: SvgPicture.asset(
+                                    AssetsConstants.retweetLogo,
+                                    height: 20,
+                                    // ignore: deprecated_member_use
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 60,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: SvgPicture.asset(
+                                    AssetsConstants.likeLogo,
+                                    height: 20,
+                                    // ignore: deprecated_member_use
+                                    color: Colors.grey,
+                                  ),
+                                ),
+                                SizedBox(
+                                  width: 60,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: SvgPicture.asset(
+                                    AssetsConstants.shareLogo,
+                                    height: 20,
+                                    // ignore: deprecated_member_use
+                                    color: Colors.grey,
+                                  ),
                                 ),
                               ],
                             )

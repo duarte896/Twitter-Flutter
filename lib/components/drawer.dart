@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:twitter/constants/ui_constants.dart';
 import 'package:twitter/features/auth/auth.dart';
 
 class MyDrawer extends StatelessWidget {
@@ -28,8 +29,8 @@ class MyDrawer extends StatelessWidget {
             child: Row(
               children: [
                 CircleAvatar(
-                  backgroundImage:
-                      NetworkImage('http://placehold.it/150x150?text=A'),
+                  backgroundImage: NetworkImage(
+                      'http://placehold.it/150x150?text=${UIConstants.userID(currentUser.email!)}'),
                 ),
                 Padding(
                   padding: EdgeInsets.only(left: 10),

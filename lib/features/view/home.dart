@@ -1,15 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:twitter/components/bottom_nav_bar.dart';
 import 'package:twitter/components/drawer.dart';
 import 'package:twitter/components/story_box.dart';
 import 'package:twitter/components/text_field.dart';
-//import 'package:twitter/components/text_field.dart';
 import 'package:twitter/components/wall_tweet.dart';
-import 'package:twitter/constants/assets_constants.dart';
 import 'package:twitter/constants/ui_constants.dart';
-//import 'package:twitter/features/view/create_tweet.dart';
 import 'package:twitter/theme/app_theme.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -88,6 +84,9 @@ class HomeState extends State<Home> {
                     controller: textController,
                     hintText: "What's happening?",
                   )),
+                  SizedBox(
+                    width: 20,
+                  ),
                   FloatingActionButton(
                     backgroundColor: Colors.blue,
                     onPressed: () {
